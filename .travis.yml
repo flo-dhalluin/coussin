@@ -7,6 +7,7 @@ python:
 #  - couchdb
 # "manually" install 2.1 ..
 before_install:
+  - sudo apt-get purge -y couchdb couchdb-bin couchdb-common
   - curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc | sudo apt-key add -
   - echo "deb https://apache.bintray.com/couchdb-deb trusty main" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update -q
