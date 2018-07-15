@@ -34,3 +34,16 @@ class Database(object):
             
 
     
+    async def create_index(self, fields, index_name=None):
+        """ create an index on the given fields, will create a default 
+            name if not specified """
+        data = {
+            "index": { "fields": fields },
+            "type": "json",
+        }
+        if name :
+            data["name"] = name
+        
+        async with self._server._client.post(self.base_url + '/' + "_index", json=data) as r:
+            assert(r.status == 200)
+            return r.json()["name"]

@@ -21,7 +21,7 @@ before_install:
     couchdb couchdb/adminpass_again password password
     couchdb couchdb/adminpass_again seen true" | sudo debconf-set-selections
   - export DEBIAN_FRONTEND=noninteractive
-  - sudo -E apt-get install -q -y couchdb
+  - sudo -E apt-get install -y --force-yes couchdb
   
 install:
   - pip install -e .
