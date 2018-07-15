@@ -2,8 +2,15 @@ language: python
 python:
   - "3.5"
   - "3.6"
-services:
-  - couchdb
+# travis uses 1.6 .. 
+#services:
+#  - couchdb
+# "manually" install 2.1 ..
+before_install:
+  - curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc | sudo apt-key add - echo "deb https://apache.bintray.com/couchdb-deb trusty main" | sudo tee -a /etc/apt/sources.list
+  - sudo apt-get update -q
+  - sudo apt-get install -y couchdb
+  
 install:
   - pip install -e .
   - pip install nose asynctest
