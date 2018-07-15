@@ -6,7 +6,7 @@ setup(name="coussin",
       author="Florent D'halluin",
       author_email="flal@melix.net",
       packages=("coussin",),
-      requires=("aiohttp >= 3.2")
+      install_requires=["aiohttp>=3.2",]
 )
 
       
