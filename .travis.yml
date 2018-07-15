@@ -11,7 +11,8 @@ before_install:
   - curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc | sudo apt-key add -
   - echo "deb https://apache.bintray.com/couchdb-deb trusty main" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update -q
-  - sudo apt-get install -y couchdb
+  - export DEBIAN_FRONTEND=noninteractive
+  - sudo apt-get install -q -y couchdb
   
 install:
   - pip install -e .
