@@ -12,16 +12,16 @@ before_install:
   - echo "deb https://apache.bintray.com/couchdb-deb trusty main" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update -q
   - |
-    echo "couchdb couchdb/mode select standalone
+    echo "couchdb couchdb/mode select standalone 
     couchdb couchdb/mode seen true
     couchdb couchdb/bindaddress string 127.0.0.1
     couchdb couchdb/bindaddress seen true
     couchdb couchdb/adminpass password password
     couchdb couchdb/adminpass seen true
     couchdb couchdb/adminpass_again password password
-    couchdb couchdb/adminpass_again seen true" | debconf-set-selections
+    couchdb couchdb/adminpass_again seen true" | sudo debconf-set-selections
   - export DEBIAN_FRONTEND=noninteractive
-  - sudo apt-get install -q -y couchdb
+  - sudo -E apt-get install -q -y couchdb
   
 install:
   - pip install -e .
