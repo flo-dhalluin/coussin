@@ -11,8 +11,17 @@ before_install:
   - curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc | sudo apt-key add -
   - echo "deb https://apache.bintray.com/couchdb-deb trusty main" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update -q
+  - |
+    echo "couchdb couchdb/mode select standalone
+    couchdb couchdb/mode seen true
+    couchdb couchdb/bindaddress string 127.0.0.1
+    couchdb couchdb/bindaddress seen true
+    couchdb couchdb/adminpass password password
+    couchdb couchdb/adminpass seen true
+    couchdb couchdb/adminpass_again password password
+    couchdb couchdb/adminpass_again seen true" | debconf-set-selections
   - export DEBIAN_FRONTEND=noninteractive
-  - sudo apt-get install -o Dpkg::Options::="--force-confnew" -q -y couchdb
+  - sudo apt-get install -q -y couchdb
   
 install:
   - pip install -e .
