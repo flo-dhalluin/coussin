@@ -2,26 +2,13 @@ language: python
 python:
   - "3.5"
   - "3.6"
-# travis uses 1.6 .. 
-#services:
-#  - couchdb
-# "manually" install 2.1 ..
+  
+services:
+  - docker
+
 before_install:
-  - sudo apt-get purge -y couchdb couchdb-bin couchdb-common
-  - curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc | sudo apt-key add -
-  - echo "deb https://apache.bintray.com/couchdb-deb trusty main" | sudo tee -a /etc/apt/sources.list
-  - sudo apt-get update -q
-  - |
-    echo "couchdb couchdb/mode select standalone 
-    couchdb couchdb/mode seen true
-    couchdb couchdb/bindaddress string 127.0.0.1
-    couchdb couchdb/bindaddress seen true
-    couchdb couchdb/adminpass password password
-    couchdb couchdb/adminpass seen true
-    couchdb couchdb/adminpass_again password password
-    couchdb couchdb/adminpass_again seen true" | sudo debconf-set-selections
-  - export DEBIAN_FRONTEND=noninteractive
-  - sudo -E apt-get install -y --force-yes couchdb
+  - docker run --name couchdb -p 5984:5984 -d couchdb:2
+  - docker ps
   
 install:
   - pip install -e .
