@@ -1,4 +1,5 @@
 # Coussin : async couchdb python client
+![CI status](https://travis-ci.org/flo-dhalluin/coussin.svg?branch=master)
 
 Since [aiocouchdb](https://github.com/aio-libs/aiocouchdb) seems stalled ( does not support a decent version of aiohttp, and couchdb 2), I started a rewrite, based on aiohttp 3. 
 
